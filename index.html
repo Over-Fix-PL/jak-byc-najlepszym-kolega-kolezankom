@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Twoje IP</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+    }
+    #ip {
+      font-size: 2rem;
+      font-family: monospace;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div id="ip">Ładuję IP...</div>
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+      })
+      .catch(() => {
+        document.getElementById('ip').textContent = "Nie udało się pobrać IP";
+      });
+  </script>
+</body>
+</html>
